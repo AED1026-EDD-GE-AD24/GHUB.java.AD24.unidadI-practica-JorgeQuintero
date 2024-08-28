@@ -1,11 +1,15 @@
 package miPrincipal;
 
-public class Principal {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import java.util.Scanner;
 
+public class Principal {
     public static void main(String[] args) {
-        System.out.println(new Principal().getGreeting());
+        Scanner consola = new Scanner(System.in);
+        int opc =0;
+        do(
+            System.out.println("*********************************");
+            System.out.println("*********************************");
+            
+        )
     }
 }

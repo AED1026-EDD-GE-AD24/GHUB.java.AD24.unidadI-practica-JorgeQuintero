@@ -63,4 +63,18 @@ public class Conjunto {
             cardinal--;
         }
     }
+    public Conjunto union(Conjunto c2){
+        Conjunto u = new Conjunto();
+
+        for(int k=0;k<cardinal;k++){
+            u.cto = this.cto[k];
+
+        }
+        u.cardinal = cardinal;
+
+        for(int k=0;k<c2.cardinal;k++){
+            u.añadir(c2.cto[k]);
+        }
+        return u;
+    }
 }
