@@ -40,6 +40,7 @@ public class AppRational{
         r9 = r7.mult(r8);
         System.out.println("Resultado del producto = "+r9);
         System.out.println(r7+ " y "+r8+ " son iguales?"+r7.equal(r8));
+        consola.close();
     }
 
 }
