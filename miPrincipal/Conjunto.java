@@ -1,50 +1,59 @@
-public class Conjunto {
-    public Conjunto(){
-        static int M=20;
-        Object cto[];
-        private int cardinal;
-        private int capacidad;
+package miPrincipal;
 
-        public Conjunto(){
-            cto = new Object(M);
-            cardinal = 0;
-            capacidad = M;
-        }
-        public boolean esVacio(){
-            return(cardianl ==0);
-        }
-        //pertenece al conjunto 
-        public boolean pertenece(Object elemento){
-            int k =0;
-            boolean encontrado = false;
-            while (k<cardinal && !encontrado){
-                encontrado = cto [k.equals(elemento)];
-                k++;
-            }
-            return encontrado;
-        }
+public class Conjunto {
+    static int M=20; //tamaño del arreglo
+    private Object cto[];
+    private int cardinal;
+    private int capacidad;
+
+    //Operaciones
+    public Conjunto(){
+        cto = new Object[M];
+        cardinal = 0;
+        capacidad = M;
+
     }
-    //añada un elemento al conjunto si no estaen el conjunto
+    //determinar si el conjunto es vacio
+    public boolean esVacio(){
+        return (cardinal ==0);
+    }
+    //pertenece al conjunto
+    public boolean pertenece(Object elemento){
+        int k = 0;
+        boolean encontrado = false;
+
+        while (k<cardinal && !encontrado){
+            encontrado = cto[k].equals(elemento); // cto[k] == elemento
+            k++;
+        }
+        return encontrado;
+
+    }
+
+    //Añade un elemento al conjunto, si no está en el conjunto
     public void añadir(Object elemento){
-        if(!pertenece(elemento)){
+        if (!pertenece(elemento)){
             /*
-             * verificar si hay posiciones libre
+             * Verificar si hay posiciones libres
              * en caso contrario se amplia
              * el conjunto
              */
             if (cardinal == capacidad){
                 Object nuevoCto[];
                 nuevoCto = new Object[capacidad+M];
-                for(int k=0;k<capacidad;k++){
-                    nuevoCto [k] =cto[k];
+                for(int k =0;k<capacidad;k++){
+                    nuevoCto[k]=cto[k];
                 }
                 capacidad +=M;
                 cto = nuevoCto;
+              
             }
-            cto [cardinal] = elemento;
-            cardinal ++;
+            cto[cardinal] = elemento;
+            cardinal++;
         }
+
     }
+
     //quita el elemento del conjunto
     public void retirar(Object elemento){
         if(pertenece(elemento)){
@@ -54,27 +63,40 @@ public class Conjunto {
             }
             /*
              * desde el elemento k hasta la ultima
-             * posicion mover los elementos una posicion
-             * a la izquierda
+             * posicion mover los elementos una posicion 
+             * a la izquierde
              */
             for(;k<cardinal;k++){
                 cto[k]=cto[k+1];
+
             }
-            cardinal--;
+            cardinal --;
+
+
         }
     }
+
+    //union de dos conjuntos
     public Conjunto union(Conjunto c2){
         Conjunto u = new Conjunto();
-
-        for(int k=0;k<cardinal;k++){
-            u.cto = this.cto[k];
+        //primero copia el operando de la union
+        for(int k=0; k<cardinal;k++){
+            u.cto[k]=this.cto[k];
 
         }
         u.cardinal = cardinal;
-
-        for(int k=0;k<c2.cardinal;k++){
+        //añadir los elementos de c2 no incluidos
+        for(int k=0; k<c2.cardinal;k++){
             u.añadir(c2.cto[k]);
         }
         return u;
     }
+
+    public int getCardinal(){
+        return cardinal;
+    }
+
+
+
+
 }
